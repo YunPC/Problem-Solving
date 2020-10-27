@@ -29,23 +29,23 @@ int main()
 int max_pick_card(int n, int comp_num, int cur_idx, int card_cnt, bool decending){
     int pick_res= 0, non_pick_res= 0, des_card_res = 0, res;
     if(cur_idx == n)
-        return 0;
+        return card_cnt;
     else
     {
         if(card_cnt == 0)
         {
-            pick_res = 1 + max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
+            pick_res =  max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
             non_pick_res = max_pick_card(n, comp_num, cur_idx+1, card_cnt, decending);
         }
         else
         {
             if(decending)
-            {   //choose
+            {   
                 if(comp_num > cards[cur_idx])
                 {
-                    pick_res = 1 + max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
+                    pick_res = max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
                 }
-                //no choose
+                
                 non_pick_res = max_pick_card(n, comp_num, cur_idx+1, card_cnt, decending);
                 
             }
@@ -53,12 +53,12 @@ int max_pick_card(int n, int comp_num, int cur_idx, int card_cnt, bool decending
             {
                 if(comp_num < cards[cur_idx])
                 {
-                    pick_res = 1 + max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
+                    pick_res = max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, decending);
                 }
                     
 
                 else if(comp_num > cards[cur_idx])
-                    des_card_res = 1 + max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, true);
+                    des_card_res = max_pick_card(n, cards[cur_idx], cur_idx+1, card_cnt+1, true);
 
                 non_pick_res = max_pick_card(n, comp_num, cur_idx+1, card_cnt, decending);
                 
