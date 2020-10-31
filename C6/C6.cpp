@@ -27,7 +27,7 @@ int main()
     }
 
     int max_interval = max_n - min_n;
-    int comp_num = 0, last_idx = 0, card_cnt = 0, des_cnt = 0, res_cnt = 0; 
+    int comp_num = 0, last_idx = 0, card_cnt = 0, des_cnt = 0, res_cnt = 1; 
     long long sum = 0, res = 0, des_sum = 0;
     for (int idx = 1; idx <= n; idx++)
     {
@@ -103,6 +103,9 @@ int main()
                             res = sum + des_sum;
                             res_cnt = card_cnt + des_cnt;
                         }
+                        else if(res == sum + des_sum)
+                            res_cnt = max(res_cnt, card_cnt + des_cnt);
+                            
                     }
                     
                 }
@@ -113,9 +116,12 @@ int main()
                 res = sum + des_sum;
                 res_cnt = card_cnt + des_cnt;
             }
+            else if(res == sum + des_sum)
+                res_cnt = max(res_cnt, card_cnt + des_cnt);
         }
     }
-    std::cout << res << endl;
+    
+    //std::cout << res << endl;
     std::cout << res_cnt;
     return 0;
 }
