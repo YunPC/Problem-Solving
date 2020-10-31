@@ -9,7 +9,7 @@ while 1
     for idx = 1:10
         d(idx, 1) = randi(100); % pos
         d(idx, 2) = 0; % r
-        d(idx, 3) = randi(100); %max_r
+        d(idx, 3) = randi(10); %max_r
     end
     d = sortrows(d, 1);
     d2 = d;
