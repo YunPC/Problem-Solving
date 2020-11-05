@@ -21,7 +21,7 @@ void makeGraph(vector<int> graph[], int u, int v, int visit[], map<int, int> &ma
 	map.insert(make_pair(v, u));
 }
 
-void dfs(vector<int> graph[], int u, int v, int visit[], map<int, int> &map,int n)
+void dfs(vector<int> graph[], int u, int v, int visit[], map<int, int> &map, int n)
 {
 	stack<int> s;
 	if(visit[u] == RED)
@@ -36,10 +36,10 @@ void dfs(vector<int> graph[], int u, int v, int visit[], map<int, int> &map,int 
 		map.find(now)-> second = id;
 		int color;
 		s.pop();
-		if(visit[now] == RED)
-			color = GREEN;
-		else
+		if(visit[now] == GREEN)
 			color = YELLOW;
+		else
+			color = GREEN;
 
 		for(int i = 0; i < graph[v].size(); i++)
 		{
