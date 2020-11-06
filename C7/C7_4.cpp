@@ -12,13 +12,11 @@ int main()
     int days[n+1];
     int arr[m][2];
 
-    //root initalize
     for(int i = 1; i <= n; i++)
     {
         root[i] = i;
     }
 
-    //days initialize
     for(int i = 1; i <=n; i++)
     {
         days[i] = 0;
@@ -35,25 +33,24 @@ int main()
     {
         u = arr[i][0];
         v = arr[i][1];
-        //same graph
+        
         if(root[u] == root[v])
         {
-                //same day (answer)
             if(days[u] == days[v])
             {
                 cout << i+1;
                 break;
             }
-            //diff day (continue)
+            
             else
             {
                 continue;
             }
         }
-        //diff graph
+        
         else
         {
-            //both day is determined
+            
             if(days[u] != 0 && days[v] != 0)
             {
                 int temp = root[v];
@@ -84,10 +81,8 @@ int main()
             }
             else
             {
-                //either day is determined
                 if(days[u] != 0 || days[v] != 0)
                 {
-                    //u exist
                     if(days[u] != 0)
                     {
                         root[v] = root[u];
@@ -97,7 +92,6 @@ int main()
                             days[v] = 1;
                         
                     }
-                    //v exist
                     else
                     {
                         root[u] = root[v];
@@ -109,7 +103,7 @@ int main()
                     }
                     
                 }
-                //neither day is determined
+                
                 else
                 {
                     root[v] = root[u];
