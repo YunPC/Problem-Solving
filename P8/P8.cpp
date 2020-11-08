@@ -7,21 +7,20 @@ int job[100001];
 
 bool isMaximumMin(int mid, int n, int d)
 {
-	int task = job[1];
-
-	for (int i=2; i<=n-d; i++)
-	{
-		task -= mid;
-        task += job[i];
-	}
-
-    if(task > d)
-        return false;
-    else
-        return true;
-    
-
-	return 0;
+    int cost, next_cost;
+    cost = job[1] / mid;
+	for(int i = 2; i <= n-d; i++)
+    {
+        if(cost == 0)
+            cost = 1;
+        next_cost = job[i] / mid;
+        if(next_cost == 0)
+            next_cost = 1;
+        if(cost + next_cost > d+1)
+            return false;
+        cost = next_cost;
+    }
+	return true;
 }
 
 int largestMinDist(int n, int d, int m)
@@ -30,7 +29,7 @@ int largestMinDist(int n, int d, int m)
 	int res = 1000000000;
 
 
-	int l = 1, r = m;
+	int l = -1, r = m+1;
 
 	while (l < r)
 	{
