@@ -12,7 +12,7 @@ bool isMaximumMin(int mid, int n, int d)
 	for(int i = 2; i <= n-d; i++)
     {
         next_cost = job[i] / mid;
-        if(cost + next_cost > d+1)
+        if(cost + next_cost >= d)
             return false;
         cost = next_cost;
     }
