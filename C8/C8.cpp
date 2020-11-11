@@ -56,7 +56,7 @@ int main()
         res++;
         pair<float, float> s = pq.top();
         pq.pop();
-        int end_s = s.second;
+        float end_s = s.second;
         while (!pq.empty())
         {
             pair<float, float> new_s = pq.top();
