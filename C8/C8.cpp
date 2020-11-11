@@ -22,22 +22,22 @@ int main()
 
     pair<int, int> v[n];
     priority_queue<pair<float, float>, vector<pair<float, float>>, comp> pq;
-    //input
+    
     for(int i = 0; i < n; i++)
     {
         cin >> x >> y;
         v[i].first = x;
         v[i].second = y;
     }
-    //make section
+    
     for(int i = 0; i < n; i++)
     {
         x = v[i].first;
         y = v[i].second;
-        //this will be spot
+        
         if(d == y)
             pq.push(make_pair(x, x));
-        //if they have section
+        
         else
         {
             float end_p = sqrt(pow(d,2) - pow(y,2)) - x;
@@ -49,7 +49,7 @@ int main()
             
         }      
     }
-    //calculate wells
+    
     int res = 0;
     while(!pq.empty())
     {
