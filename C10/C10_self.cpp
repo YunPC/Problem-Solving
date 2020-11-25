@@ -5,6 +5,10 @@
 
 using namespace std;
 
+int root[50000];
+int size[50000];
+int rank[50000];
+
 struct Building{
     int x, y, id;
     Building(){}
@@ -25,11 +29,11 @@ int dist(Building &b1, Building &b2)
 {
     return (b1.x - b2.x)*(b1.x-b2.x) + (b1.y-b2.y)*(b1.y-b2.y);
 }
-int find(int u, int root[])
+int find(int u)
 {
     if(u == root[u])
         return u;
-    return root[u] = find(root[u], root);
+    return root[u] = find(root[u]);
 }
 int main()
 {
@@ -76,45 +80,14 @@ int main()
         }
         candidate.insert(now);
     }
-    //union find
-    int root[n];
-    int diff[n];
-    int size[n];
     //initialize root and diff
     for(int i = 0; i < n; i++)
     {
         root[i] = i;
-        diff[i] = -1;
-        size[i] = 1;
+        ::size[i] = 1;
+        ::rank[i] = 0;
     }
-    for(int i = 0; i < edge_s; i++)
-    {
-        int u = edge[i].first;
-        int v = edge[i].second;
-        //neither have diff
-        if(diff[u] == -1 && diff[v] == -1)
-        {
-            diff[u] = v;
-            diff[v] = u;
-        }
-        //both have diff
-        else if(diff[u] != -1 && diff[v] != -1)
-        {
-
-        }
-        //either have diff
-        else
-        {   
-            int no_diff = diff[u] == -1 ? u : v;
-            int y_diff = diff[u] == -1 ? v : u;
-            diff[no_diff] = y_diff;
-            size[find(diff[y_diff], root)] += 1;
-            root[no_diff] = find(diff[y_diff], root);
-            diff[y_diff] = no_diff;
-
-        }
-    }
-    //find maximum vlaue
+    
 
     return 0;
 }
